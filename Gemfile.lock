@@ -170,7 +170,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   pg
-  rails (>= 5.0.0.rc2, < 5.1)
+  rails (>= 4.2.8)
   rails_12factor
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)

@@ -1,5 +1,11 @@
-<% flash.each do |name, msg| %>
-  <ul>
-    <li><%= msg %></li>
-  </ul>
-<% end %>
+<div class="row">
+  <div class="col-sm-offset-2 col-sm-8">
+    <div class="confirmation"> 
+      <% flash.each do |name, msg| %>
+        <ul>
+          <li><%= msg %></li>
+        </ul>
+      <% end %>
+    </div>
+  </div>
+</div>

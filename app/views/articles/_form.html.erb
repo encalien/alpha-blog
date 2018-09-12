@@ -1,19 +1,10 @@
-<% if @article.errors.any? %>
-  <div class="error col-sm-offset-3 col-sm-6"> 
-    <h4>
-      The following errors have occured:
-    </h4>
-    <ul>
-      <% @article.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-    </ul>
-  </div>
+<% content_for :errors do %>
+  <%= render 'shared/errors', model: article %>
 <% end %>
 
-<div class="form">
+<div class="row">
   <div class="col-sm-12">
-    <%= form_for @article do |f| %>   
+    <%= form_for article do |f| %>   
       <div class="form-group col-sm-offset-2 col-sm-8">
         <%= f.label :title %>
         <%= f.text_field :title, class: "form-control", placeholder: "Enter your article title here", autofocus: true %>

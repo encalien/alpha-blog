@@ -9,12 +9,19 @@
 <body class="<%= "gray-background" if params[:controller] == "pages" && params[:action] == "home" %>">
   
   <%= render "layouts/navigation" %>
-  <%= render "layouts/messages" %>
   
   <div class="container">
-        <%= yield %>
+    
+    <% if flash.any? %>
+      <%= render "layouts/messages" %>
+    <% end %>
+    
+    <%= content_for :errors %>
+    
+    <%= yield %>
   </div>
 
   <%= render "layouts/footer" %>
+  
 </body>
 </html>

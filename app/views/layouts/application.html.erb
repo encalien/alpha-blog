@@ -8,9 +8,13 @@
 </head>
 <body class="<%= "gray-background" if params[:controller] == "pages" && params[:action] == "home" %>">
   
+  <%= render "layouts/navigation" %>
   <%= render "layouts/messages" %>
   
-<%= yield %>
+  <div class="container">
+        <%= yield %>
+  </div>
 
+  <%= render "layouts/footer" %>
 </body>
 </html>

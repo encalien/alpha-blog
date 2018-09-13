@@ -4,7 +4,7 @@
       <div class="error"> 
         <h4>
           <%= pluralize(model.errors.count, "error") %>
-          prevented this article from being saved:
+          occured:
         </h4>
         <ul>
           <% model.errors.full_messages.each do |msg| %>

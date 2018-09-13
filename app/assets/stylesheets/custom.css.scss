@@ -15,6 +15,15 @@ $navbar-default-bg: #42536d;
   text-decoration: none;
 }
 
+.navbar-default .navbar-nav > li > a {
+  color: #fff;
+}
+
+.navbar-default .navbar-nav > li > a:hover {
+  color: #42536d;
+  background-color: #c1c1c1;
+}
+
 .center {
   text-align: center;
   margin: auto;

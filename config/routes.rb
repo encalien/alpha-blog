@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'about', to: 'pages#about'
   
   resources :articles
+  resources :users
   
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

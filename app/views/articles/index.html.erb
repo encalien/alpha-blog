@@ -1,29 +1,27 @@
-<h1>
+<h1 align="center">
   Listing all articles
 </h1>
 
-<p>
-  <%= link_to 'Create new article', new_article_path %>
-</p>
+<div class="center">
+  <%= link_to 'Create new article', new_article_path, class: "btn btn-success btn-lg" %>
+</div>
 
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Description</th>
-  </tr>
-
-  <% @articles.each do |article| %>
-  <tr>
-    <td><%= article.title %></td>
-    <td><%= article.description %></td>
-    <td><%= link_to 'show', article_path(article) %></td>
-    <td><%= link_to 'edit', edit_article_path(article) %></td>
-    <td><%= link_to 'delete', article_path(article), method: :delete, data: { confirm: "Are you sure?" } %></td>
-  </tr>
-  
-  <% end %>
-
-</table>
-
-<%= link_to 'Return home', root_path %> <br/>
+<div class="row">
+  <div class="col-sm-offset-2 col-sm-8">
+    <table class="table table-striped">
+      <% @articles.each do |article| %>
+        <tr>
+          <td><strong><%= link_to article.title, article_path(article) %></strong></td>
+          <td><%= truncate(article.description, length: 60) %></td>
+          <td align="right">
+            <%= link_to 'EDIT', edit_article_path(article), class: "btn btn-primary btn-xs" %>
+            <%= link_to 'DELETE', article_path(article), method: :delete, 
+                                                          data: { confirm: "Are you sure you want to delete this article?" }, 
+                                                          class: "btn btn-danger btn-xs" %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
 

@@ -1,7 +1,8 @@
 <h1 align="center"><%= @article.title %></h1>
 
 <p align="center">
-  Created by: | Created on: <%= @article.created_at %>
+  Created by: <%= @article.user.username %></br>
+  Created on: <%= time_ago_in_words(@article.created_at) %> | Last updated on: <%= time_ago_in_words(@article.updated_at) %>
 </p>
 
 <div class="row">

@@ -15,21 +15,27 @@ class UsersController < ApplicationController
     end
   end
   
-  def show; end
+  def show; 
+    @user_articles = @user.articles.paginate(page: params[:page], per_page: 5)
+  end
   
   def edit; end
   
   def update
     if @user.update(user_params)
-      flash[:notice] = "User details were successfully updated!"
+      flash[:notice] = "Your account details were successfully updated!"
       redirect_to user_path(@user)
     else
       render 'edit'
     end
   end
   
-  def index; 
-    @user = User.authenticate(user_credentials)
+  def index
+    @users = User.paginate(page: params[:page], per_page: 5)
+  end
+  
+  def login; 
+    @user = User.find_by(username: params[:username]).try(:authenticate, params[:password])
   end
   
   def destroy
@@ -46,9 +52,5 @@ class UsersController < ApplicationController
   
   def user_params
     params.require(:user).permit(:firstname, :lastname, :username, :email, :password, :email_confirmation, :password_confirmation)
-  end
-  
-  def user_credentials
-    params.require(:user).permit(:username, :password)
   end
 end

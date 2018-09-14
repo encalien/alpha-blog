@@ -1,18 +1,50 @@
 <h1 align="center">Your profile</h1>
 
 <div class="row">
+  <div class="col-sm-offset-2 col-sm-8 profile-title">
+      Account information</br>
+  </div>
   <div class="well col-sm-offset-2 col-sm-8">
-    First name: <%= @user.firstname %></br>
-    Last name: <%= @user.lastname %></br>
-    Username: <%= @user.username %></br>
-    E-mail address: <%= @user.email %></br>
-    Change password:
+    
+    <div class="col-sm-6">
+      First name: <%= @user.firstname %></br>
+      Last name: <%= @user.lastname %></br>
+      Username: <%= @user.username %></br>
+      E-mail address: <%= @user.email %>
+    </div>
+    <div class="col-sm-6" align="right">
+      <%= gravatar_for(@user, size:150) %>
+    </div>
+    <div class="center">
+      <%= link_to "Edit your profile", edit_user_path(@user), class: "btn btn-primary btn-md" %>
+      <%= link_to "Delete your profile", user_path(@user), method: :delete, 
+                                          data: { confirm: "Are you sure you want to delete your profile?" }, 
+                                          class: "btn btn-danger btn-md" %>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-offset-2 col-sm-8 profile-title">
+      Articles written by you</br>
+  </div>
+
+  <% @user_articles.each do |a| %>
+    <div class="well col-sm-offset-2 col-sm-8">
+      <%= link_to a.title, article_path(a) %></br>
+      <%= truncate(a.description, length: 500) %></br>
+      <div class="center">
+        <%= link_to 'EDIT', edit_article_path(a), class: "btn btn-primary btn-xs" %>
+        <%= link_to 'DELETE', article_path(a), method: :delete, 
+                                                     data: { confirm: "Are you sure you want to delete this article?" }, 
+                                                     class: "btn btn-danger btn-xs" %>
+      </div>
+    </div>
+  <% end %>
+
+  <div align="center">
+    <%= will_paginate(@user_articles) %>
   </div>
 </div>
   
-<div class="center">
-  <%= link_to "Edit your profile", edit_user_path(@user), class: "btn btn-primary btn-md" %>
-  <%= link_to "Delete your profile", user_path(@user), method: :delete, 
-                                      data: { confirm: "Are you sure you want to delete your profile?" }, 
-                                      class: "btn btn-danger btn-md" %>
-</div>
+

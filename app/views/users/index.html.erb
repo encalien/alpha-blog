@@ -1,32 +1,26 @@
-<h1 align="center">LOG IN</h1>
+<h1 align="center">
+  These are our Alpha Bloggers
+</h1>
 
-<% content_for :errors do %>
-  <%= render 'shared/errors', model: @user %>
-<% end %>
-
-<div class="row">
-  <div class="col-sm-12">
-    <%= form_for @user do |f| %>   
-      <div class="form-group col-sm-offset-2 col-sm-8">
-        <%= f.label :username %>
-        <%= f.text_field :username, class: "form-control", autofocus: true %>
-      </div>
-      <div class="form-group col-sm-offset-2 col-sm-8">
-        <%= f.label :password %>
-        <%= f.password_field :password, class: "form-control" %>
-      </div>
-      <div class="form-group col-sm-offset-2 col-sm-8">
-        <%= f.submit "LOG IN", class: "btn btn-primary btn-lg" %>
-      </div>      
-    <% end %>
-    <div class="col-sm-offset-4 col-sm-4">
-      [ <%= link_to "Cancel request and return to user list", users_path %> ]
-    </div>
-  </div>
+<div align="center">
+  <%= will_paginate %>
 </div>
 
-<div class="row"> 
-  <div class="center">
-    <%= link_to 'Create new account', signup_path, class: "btn btn-success btn-lg" %>
-  </div>
+<div class="row col-sm-offset-2 col-sm-8">
+    <table class="table table-striped">
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= gravatar_for(user, size:40) %></td>
+          <td><strong><%= link_to user.username, user_path(user) %></strong></br>
+          <small>So far posted: <%= pluralize(user.articles.count, "article") if user.articles %></small></td>
+          <td>last article: <%= link_to user.articles.last.title, article_path(user.articles.last) if user.articles %></br>
+          <small>created on: <%= user.articles.last.created_at if user.articles %></small></td>
+        </tr>
+      <% end %>
+    </table>
 </div>
+
+<div align="center">
+  <%= will_paginate %>
+</div>
+

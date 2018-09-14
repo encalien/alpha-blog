@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :articles
   
   get "signup", to: "users#new"
+  get "login", to: "users#login"
   resources :users, except: :new
   
   # Example of regular route:

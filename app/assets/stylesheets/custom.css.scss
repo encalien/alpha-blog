@@ -62,11 +62,12 @@ $navbar-default-bg: #42536d;
   margin-bottom: 50px;
 }
 
-footer {
-  margin-top: 50px;
-  padding-top: 5px;
-  border-top: 1px solid #eaeaea;
-  color: #777777;
+.profile-title {
+  font-size: 1.3em;
+  font-weight: bold;
+  padding-bottom: 3px;
+  border-bottom: 2px solid #969696;
+  margin-bottom: 5px;
 }
 
 .error {
@@ -97,6 +98,9 @@ footer {
   margin: 0px;
 }
 
-.article-actions {
-  
+footer {
+  margin-top: 50px;
+  padding-top: 5px;
+  border-top: 1px solid #eaeaea;
+  color: #777777;
 }

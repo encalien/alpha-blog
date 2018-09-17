@@ -19,11 +19,4 @@ class ApplicationController < ActionController::Base
       redirect_to login_path
     end
   end
-  
-  def require_same_user
-    if @article.user != current_user
-      flash[:danger] = "You must be the author to perform this action"
-      redirect_to article_path(@article)
-    end
-  end
 end

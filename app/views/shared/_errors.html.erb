@@ -1,7 +1,7 @@
 <% if model.errors.any? %>
   <div class="row">
     <div class="col-sm-offset-2 col-sm-8">
-      <div class="error"> 
+      <div class="alert alert-error">
         <h4>
           <%= pluralize(model.errors.count, "error") %>
           occured:

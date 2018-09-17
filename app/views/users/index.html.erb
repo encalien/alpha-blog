@@ -12,9 +12,9 @@
         <tr>
           <td><%= gravatar_for(user, size:40) %></td>
           <td><strong><%= link_to user.username, user_path(user) %></strong></br>
-          <small>So far posted: <%= pluralize(user.articles.count, "article") if user.articles %></small></td>
-          <td>last article: <%= link_to user.articles.last.title, article_path(user.articles.last) if user.articles %></br>
-          <small>created on: <%= user.articles.last.created_at if user.articles %></small></td>
+            <small>So far posted: <%= pluralize(user.articles.count, "article") if user.articles.any? %></small></td>
+          <td>Last article: <%= link_to user.articles.last.title, article_path(user.articles.last) if user.articles.any? %></br>
+            <small>Created on: <%= user.articles.last.created_at if user.articles.any? %></small></td>
         </tr>
       <% end %>
     </table>

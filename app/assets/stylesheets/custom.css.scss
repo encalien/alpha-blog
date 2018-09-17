@@ -70,32 +70,28 @@ $navbar-default-bg: #42536d;
   margin-bottom: 5px;
 }
 
-.error {
+.alert {
   color: black;
-  background-color: #ff6060;
   line-height: 1.2;
-  border-color: #ff0000;
   border-style: solid;
   padding: 10px;
   margin-top: 30px;
   margin-bottom: 30px;
 }
 
-.confirmation {
-  color: black;
+.alert-success {
   background-color: #70e073;
-  line-height: 1.2;
   border-color: #00d105;
-  border-style: solid;
-  padding: 10px;
-  margin-top: 30px;
-  margin-bottom: 30px;
 }
 
-.confirmation ul {
-  list-style: none;
-  padding: 0px;
-  margin: 0px;
+.alert-error {
+  background-color: #ff6060;
+  border-color: #ff0000;
+}
+
+.alert-info {
+  background-color: #a0d6ff;
+  border-color: #40aaf9;
 }
 
 footer {

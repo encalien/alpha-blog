@@ -1,5 +1,12 @@
 <div class="center jumbotron">
   <h1>ALPHA BLOG</h1>
   <p>Hello and welcome to my blog!</p>
-  <p><%= link_to "SIGN UP NOW", "#", class: "btn btn-primary btn-xl" %></p>
+  <p><%= link_to "SIGN UP NOW", signup_path, class: "btn btn-primary btn-xl" %></p>
+  <% if logged_in? %>
+    <p><small></br>Currently logged in as <%= current_user.username %>. Not you?</small></br>
+    <%= link_to "LOG OUT", login_path, method: :delete, class: "btn btn-primary btn-md" %></p>
+  <% else %>
+<p><small></br>Already have an account?</small></br>
+    <%= link_to "LOG IN", login_path, class: "btn btn-primary btn-md" %></p>
+  <% end %>
 </div>

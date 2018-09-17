@@ -1,11 +1,9 @@
 <div class="row">
   <div class="col-sm-offset-2 col-sm-8">
-    <div class="confirmation"> 
       <% flash.each do |name, msg| %>
-        <ul>
-          <li><%= msg %></li>
-        </ul>
+        <div class="alert <%= flash_class(name) %>">
+          <%= msg %>
+        </div>
       <% end %>
-    </div>
   </div>
 </div>

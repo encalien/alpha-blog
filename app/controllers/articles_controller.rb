@@ -52,7 +52,7 @@ class ArticlesController < ApplicationController
   end
     
   def require_same_user
-    if @article.user != current_user
+    if @article.user != current_user && !current_user.is_admin?
       flash[:danger] = "You must be the author to perform this action"
       redirect_to article_path(@article)
     end

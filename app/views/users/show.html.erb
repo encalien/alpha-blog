@@ -1,4 +1,9 @@
-<h1 align="center">Your profile</h1>
+<h1 align="center">
+  <% if logged_in? && @user == current_user %>
+    Your profile
+  <% else %>
+    <%= @user.username %>'s profile
+  <% end %></h1>
 
 <div class="row">
   <div class="col-sm-offset-2 col-sm-8 profile-title">
@@ -7,10 +12,13 @@
   <div class="well col-sm-offset-2 col-sm-8">
     
     <div class="col-sm-6">
-      First name: <%= @user.firstname %></br>
-      Last name: <%= @user.lastname %></br>
       Username: <%= @user.username %></br>
-      E-mail address: <%= @user.email %>
+      <% if current_user == @user %>
+        First name: <%= @user.firstname %></br>
+        Last name: <%= @user.lastname %></br>
+        E-mail address: <%= @user.email %><br>
+      <% end %>
+      Description: this is me<% %></br>
     </div>
     <div class="col-sm-6" align="right">
       <%= gravatar_for(@user, size:150) %>
@@ -34,11 +42,15 @@
       <%= link_to a.title, article_path(a) %></br>
       <%= truncate(a.description, length: 500) %></br>
       <div class="center">
-        <%= link_to 'EDIT', edit_article_path(a), class: "btn btn-primary btn-xs" %>
-        <%= link_to 'DELETE', article_path(a), method: :delete, 
-                                                     data: { confirm: "Are you sure you want to delete this article?" }, 
-                                                     class: "btn btn-danger btn-xs" %>
-      </div>
+        <% if logged_in? %>
+          <% if current_user == a.user || current_user.admin? %>
+            <%= link_to 'EDIT', edit_article_path(a), class: "btn btn-primary btn-xs" %>
+            <%= link_to 'DELETE', article_path(a), method: :delete, 
+                                                         data: { confirm: "Are you sure you want to delete this article?" }, 
+                                                         class: "btn btn-danger btn-xs" %>
+          <% end %>
+        <% end %>
+     </div>
     </div>
   <% end %>
 

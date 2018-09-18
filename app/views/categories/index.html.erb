@@ -1,0 +1,30 @@
+<h1 align="center">
+  Listing all categories
+</h1>
+
+<div align="center">
+  <%= will_paginate %>
+</div>
+
+<div class="row category-list">
+  <table class="table table-striped">
+    <% @categories.each do |category| %>
+      <tr>
+        <td><strong><%= link_to category.name, category_path(category) %></strong></td>
+        <td>Last entry 
+        <td align="right">
+        <% if logged_in? && current_user.admin? %>
+          <%= link_to "EDIT", edit_category_path(category), class: "btn btn-primary btn-xs" %>
+          <%= link_to "DELETE", category_path(category), method: :delete, 
+                                              data: { confirm: "Are you sure you want to delete this category?" }, 
+                                              class: "btn btn-danger btn-xs" %>
+        <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+
+<div align="center">
+  <%= will_paginate %>
+</div>

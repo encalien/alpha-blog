@@ -3,6 +3,7 @@
 </h1>
 
 <div align="center">
+  <%= link_to "EDIT", edit_category_path(@category), class: "btn btn-primary btn-md" if (logged_in? && current_user.admin?) %>
   <%= will_paginate @category_articles %>
 </div>
 

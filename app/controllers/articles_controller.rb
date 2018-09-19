@@ -1,3 +1,5 @@
+require 'will_paginate/array'
+
 class ArticlesController < ApplicationController
   before_action :find_article, only: [:show, :edit, :update, :destroy]
   before_action :require_user, except: [:index, :show]
@@ -32,7 +34,7 @@ class ArticlesController < ApplicationController
   end
   
   def index
-    @articles = Article.sort_by(&:created_at).reverse.paginate(page: params[:page], per_page: 5)
+    @articles = Article.all.sort_by(&:created_at).reverse.paginate(page: params[:page], per_page: 5)
   end
   
   def destroy

@@ -12,7 +12,7 @@ class CategoriesControllerTest < ActionController::TestCase
   end
   
   test "should get categories new" do
-    sign_in_as(@user, "blabla")
+    session[:user_id] = @user.id
     get :new
     assert_response :success
   end

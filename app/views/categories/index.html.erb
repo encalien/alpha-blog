@@ -6,13 +6,19 @@
   <%= will_paginate %>
 </div>
 
-<div class="row category-list">
+<div class="row">
   <table class="table table-striped">
-    <% @categories.each do |category| %>
+    <% @categories.sort_by(&:name).each do |category| %>
       <tr>
-        <td><strong><%= link_to category.name, category_path(category) %></strong></td>
-        <td>Last entry 
-        <td align="right">
+        <td class="col-sm-2"><strong><%= link_to category.name, category_path(category) %></strong></td>
+        <% if category.articles.any? %>
+          <td class="col-sm-3">Last entry on <%= time_ago_in_words(category.articles.last.created_at) %> by 
+            <%= User.exists?(category.articles.last.user_id) ? User.find(category.articles.last.user_id).username : "inactive user" %></td>
+        <% else %>
+          <td class="col-sm-3">No entries yet.</td>
+        <% end %>
+        <td class="col-sm-2"><%= pluralize(category.articles.count, "article") %></td>
+        <td class="col-sm-1" align="right">
         <% if logged_in? && current_user.admin? %>
           <%= link_to "EDIT", edit_category_path(category), class: "btn btn-primary btn-xs" %>
           <%= link_to "DELETE", category_path(category), method: :delete, 

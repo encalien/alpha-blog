@@ -1,12 +1,23 @@
 <h1 align="center"><%= @article.title %></h1>
 
 <p align="center">
-  Created by: <%= @article.user.username %></br>
-  Created on: <%= time_ago_in_words(@article.created_at) %> | Last updated on: <%= time_ago_in_words(@article.updated_at) %>
+  Created by:
+  <% if @article.user == nil %>
+    inactive user
+  <% else %>
+    <%= link_to @article.user.username, user_path(@article.user) %> 
+  <% end %><br>
+  Created on <%= @article.created_at.strftime("%d. %m. %Y") %> &nbsp;&nbsp;|&nbsp;&nbsp; Last updated on <%= @article.updated_at.strftime("%d. %m. %Y") %>
 </p>
 
 <div class="row">
   <div class="well col-sm-offset-2 col-sm-8">
+    <div class="center">
+      <% @article.categories.each do |cat| %>
+        <%= link_to cat.name, category_path(cat), class: "btn btn-default btn-sm" %>
+      <% end %>
+    </div>
+    <hr />
     <%= simple_format(@article.description) %>
   </div>
 </div>

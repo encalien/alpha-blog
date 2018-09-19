@@ -32,7 +32,7 @@ class ArticlesController < ApplicationController
   end
   
   def index
-    @articles = Article.paginate(page: params[:page], per_page: 5)
+    @articles = Article.sort_by(&:created_at).reverse.paginate(page: params[:page], per_page: 5)
   end
   
   def destroy
@@ -48,11 +48,11 @@ class ArticlesController < ApplicationController
   private
   
   def article_params
-    params.require(:article).permit(:title, :description)
+    params.require(:article).permit(:title, :description, category_ids: [])
   end
     
   def require_same_user
-    if @article.user != current_user && !current_user.is_admin?
+    if @article.user != current_user && !current_user.admin?
       flash[:danger] = "You must be the author to perform this action"
       redirect_to article_path(@article)
     end
